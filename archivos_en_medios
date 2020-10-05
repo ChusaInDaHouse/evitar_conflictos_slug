@@ -1,0 +1,7 @@
+Para evitar conflictos de slug con los archivos subidos a medios:
+
+// Attachment unique slugs (pervent post conflicts)
+function wp_unique_attachment_slug($slug, $post_ID, $post_status, $post_type, $post_parent, $original_slug) {
+    return 'attachment' == $post_type ? uniqid('media-') : $slug;
+}
+add_filter('wp_unique_post_slug', 'wp_unique_attachment_slug', 10, 6);
